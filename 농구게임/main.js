@@ -14,10 +14,24 @@
 let comScore = 0;
 let userScore = 0;
 let isComputerTurn = true;
+let shotsLeft = 5;
 
 function onComputerShoot() {
-  if(!isComputerTurn) {
+  if (!isComputerTurn) {
     return;
+  }
+
+
+  let computerButtons = document.getElementsByClassName('btn-computer');
+
+  for (let i = 0; i < computerButtons.length; i++) {
+    computerButtons[i].disabled = true;
+  }
+
+  let userButton = document.getElementsByClassName('btn-user');
+
+  for (let i = 0; i > userButton.length; i++) {
+    userButton[i].disabled = false;
   }
 
   let shootType = Math.random() < 0.5 ? 2 : 3;
@@ -51,15 +65,20 @@ function onComputerShoot() {
 
 function onUserShoot(shootType) {
 
-  if(isComputerTurn) {
+  if (isComputerTurn) {
     return;
   }
+
+  
+
+
 
   let textElem = document.getElementById('text');
   let userScoreElem = document.getElementById('user-score');
 
-  if(shootType === 2) {
-    if(Math.random() < 0.5) {
+
+  if (shootType === 2) {
+    if (Math.random() < 0.5) {
       textElem.innerHTML = '사용자가 2점슛을 성공했습니다.'
       userScore += 2;
       userScoreElem.innerHTML = userScore;
@@ -67,14 +86,41 @@ function onUserShoot(shootType) {
       textElem.innerHTML = '사용자가 2점슛을 실패했습니다.'
     }
   } else {
-    if(Math.random() < 0.33) {
+    if (Math.random() < 0.33) {
       textElem.innerHTML = '사용자가 3점슛을 성공했습니다.'
       userScore += 3
-      userScoreElem.innerHTML = userScore 
+      userScoreElem.innerHTML = userScore;
     } else {
       textElem.innerHTML = '사용자가 3점슛을 실패했습니다.'
     }
   }
 
   isComputerTurn = true;
+
+  shotsLeft--;
+  let shotsLeftEle = document.getElementById('shots-left');
+  shotsLeftEle.innerHTML = shotsLeft;
+
+  if(shotsLeft === 0) {
+    if(userScore > comScore) {
+      textElem.innerHTML = "승리했습니다."
+    } else if(userScore < comScore) {
+      textElem.innerHTML = "아쉽게도 졌습니다"
+    } else {
+      textElem.innerHTML = "비겼습니다."
+    }
+    return;
+  }
+
+  let computerButtons = document.getElementsByClassName('btn-computer');
+
+  for (let i = 0; i < computerButtons.length; i++) {
+    computerButtons[i].disabled = false;
+  }
+
+  let userButton = document.getElementsByClassName('btn-user');
+
+  for (let i = 0; i > userButton.length; i++) {
+    userButton[i].disabled = true;
+  }
 }
