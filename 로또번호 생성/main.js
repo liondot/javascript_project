@@ -7,6 +7,10 @@
 // 4. 다르다면 변수 1에 값을 넣음 
 // 5. 2~4번 과정을 반복하여 변수 2, 3, 4, 5, 6에 할당 
 
+
+
+
+
 let num1, num2, num3, num4, num5, num6
 
 num1 = Math.floor(Math.random() * 45 + 1);
@@ -30,11 +34,20 @@ for (let i = 0; i < 6; i++) {
   list.splice(index, 1);
 
   result.push(num);
-  console.log(` num값 : ${num}, list값 : ${list}`);
 
 }
 
-// console.log(`결과값, ${result}`);
+function compare(a, b) {
+  if (a < b) {
+    return -1;
+  }
+  if (a > b) {
+    return 1;
+  }
+  return 0
+}
+
+result.sort(compare);
 
 for (let i = 0; i < 6; i++) {
   document.write(`<span class = "ball">` + result[i] + `</span>`);
