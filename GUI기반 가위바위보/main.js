@@ -56,6 +56,7 @@ function onButtonClick(userInput) {
      result += '- 컴퓨터와 비겼습니다.';
     }
   }
-
+  
 alert(result)
+
 }
