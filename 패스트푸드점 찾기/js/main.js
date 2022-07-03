@@ -6,40 +6,46 @@ $(function () {
   $('.btn-search').click(function () {
     let searchKeyword = $('#txt-search').val();
 
-    $.get(API_URL, {
-      searchKeyword: searchKeyword
-    }, function (data) {
-      let list = data.list;
-      let total = data.total;
+    search(searchKeyword);
+  });
 
-      $('.total').html('총 ' + total + '개의 패스트푸드점을 찾았습니다.');
-
-      let $list = $('.list');
-      for (let i = 0; i < list.length; i++) {
-        let item = list[i];
-
-        // 1. 템플릿을 복제한다.
-        // 2. 복제한 템플릿에 데이터를 세팅한다.
-        // 3. 목록에 복제한 템플릿을 추가한다.
-
-        let $elem = $('#item-template')
-          .clone()
-          .removeAttr('id')
-
-
-        $elem.find('.item-no').html(i + 1);
-        $elem.find('.item-name').html(item.name);
-        $elem.find('.item-addr').html(item.addr);
-
-        $list.append($elem)
-      }
-
-    });
+  $('#txt-search').on('keypress', function(e) {
+    if(e.keyCode === 13) {
+      $('.btn-search').trigger('click');
+    }
   });
 });
 
-$('#txt-search').on('keypress', function(e) {
-  if(e.keyCode === 13) {
-    $('.btn-search').trigger('click');
+
+function search(searchKeyword) {
+
+$.get(API_URL, {
+  searchKeyword: searchKeyword
+}, function (data) {
+  let list = data.list;
+  let total = data.total;
+
+  $('.total').html('총 ' + total + '개의 패스트푸드점을 찾았습니다.');
+
+  let $list = $('.list');
+  for (let i = 0; i < list.length; i++) {
+    let item = list[i];
+
+    // 1. 템플릿을 복제한다.
+    // 2. 복제한 템플릿에 데이터를 세팅한다.
+    // 3. 목록에 복제한 템플릿을 추가한다.
+
+    let $elem = $('#item-template')
+      .clone()
+      .removeAttr('id')
+
+
+    $elem.find('.item-no').html(i + 1);
+    $elem.find('.item-name').html(item.name);
+    $elem.find('.item-addr').html(item.addr);
+
+    $list.append($elem)
   }
-})
+
+});
+}
