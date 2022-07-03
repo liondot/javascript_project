@@ -4,7 +4,11 @@ let API_URL = 'https://floating-harbor-78336.herokuapp.com/fastfood'
 
 $(function () {
   $('.btn-search').click(function () {
-    $.get(API_URL, {}, function (data) {
+    let searchKeyword = $('#txt-search').val();
+
+    $.get(API_URL, {
+      searchKeyword: searchKeyword
+    }, function (data) {
       let list = data.list;
       let total = data.total;
 
@@ -33,3 +37,9 @@ $(function () {
     });
   });
 });
+
+$('#txt-search').on('keypress', function(e) {
+  if(e.keyCode === 13) {
+    $('.btn-search').trigger('click');
+  }
+})
