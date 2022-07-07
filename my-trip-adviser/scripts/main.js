@@ -11,10 +11,19 @@ $(function(){
 })
 
 $(window).trigger('scroll');
-// $('#from').datepicker();
 let dpFrom = $('#from').datepicker({
   dateFormat: 'yy-mm-dd',
-  minDate:0
+  minDate:0,
+  onSelect: function(){
+    dpTo.datepicker('option', 'minDate', dpFrom.datepicker('getDate'));
+  }
 });
+
 dpFrom.datepicker('setDate', new Date());
 
+let dpTo = $('#to').datepicker({
+  dateFormat: 'yy-mm-dd',
+  minDate: 0
+})
+
+dpTo.datepicker('setDate', 1)
