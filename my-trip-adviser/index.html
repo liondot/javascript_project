@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,16 @@
   <title>트립어드바이저</title>
   <!-- jquery -->
   <script src="scripts/jquery 3.6.0.min.js"></script>
+  <script src="libs/jquery-ui/jquery-ui.min.js"></script>
+  
   <!-- javascript -->
   <script src="scripts/main.js" defer></script>
   <!-- style -->
+  <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css">
   <link rel="stylesheet" href="styles/style.css">
+
 </head>
+
 <body>
   <div id="container">
     <div id="header">
@@ -25,9 +31,32 @@
       </div>
     </div>
     <div id="body">
-      
+      <div id="title-text" class="lg-text">어디로 떠나볼까요?</div>
+      <div id="title-sub-text" class="md-text">where do you want to go?</div>
+      <div id="search-panel">
+        <form action="" id="form-search">
+          <div class="panel-block">
+            <label for="from">일정이 언제예요</label>
+            <div>
+              <input type="text" id="from" readonly>
+            </div>
+          </div>
+          <div class="panel-block">
+            <label for="to">언제까지예요?</label>
+            <div>
+              <input type="text" id="to" readonly>
+            </div>
+          </div>
+          <div class="panel-block no-margin">
+            <button type="submit" class="btn-search">
+              <img src="images/icon_search_on.png" alt="">
+              검색
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  
+
 </body>
+
 </html>
