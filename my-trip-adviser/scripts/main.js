@@ -44,8 +44,31 @@ function search(from, to) {
     from:from,
     to: to
   }, function(r){
-    console.log(r);
+    let $list = $('#list-panel');
+
+    for(let i = 0; i < r.length; i++) {
+      let data = r[i];
+      let $item = createListeItem(data);
+
+      $list.append($item)
+    }
+
+    $('#list-bg').show();
   });
 
+}
 
+function createListeItem(data) {
+  let $tmpl = $('#list-item-template').clone().removeAttr('id');
+
+  $tmpl.find('.list-item-image').attr('src', data.titleImageUrl);
+  $tmpl.find('.list-item-name').html(data.name);
+  $tmpl.find('.list-item-city-name').html(data.cityName);
+
+  $tmpl.click(function(e) {
+    let url = 'detail.html?id = ' + data.id;
+    window.location = url;
+  })
+
+  return $tmpl
 }
