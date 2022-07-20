@@ -36,8 +36,24 @@ $(function () {
     // 3박4일 표시: 오늘 날짜에 4일을 더한 날짜로 설정 
     dpTo.datepicker('setDate', 4)
 
+    $('#form_search').submit(function(e) {
+        e.preventDefault();
 
+        let from = $('#from').val();
+        let to = $('#to').val();
 
+        search(from, to)
+    })
 
+    
+function search(from, to) {
+    let url = 'https://javascript-basic.appspot.com/searchLocation'
 
+    $getJSON(url, {
+        from: from,
+        to: to
+    }, function(r) {
+        console.log(r)
+    })
+}
 })
