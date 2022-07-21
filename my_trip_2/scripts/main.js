@@ -27,8 +27,6 @@ $(function () {
     let dpTo = $('#to').datepicker({
         dateFormat: 'yy-mm-dd',
         minDate: 0
-
-
     })
 
     dpFrom.datepicker('setDate', new Date())
@@ -45,15 +43,39 @@ $(function () {
         search(from, to)
     })
 
-    
-function search(from, to) {
-    let url = 'https://javascript-basic.appspot.com/searchLocation'
+    function search(from, to) {
+        let url = 'https://javascript-basic.appspot.com/searchLocation'
 
-    $getJSON(url, {
-        from: from,
-        to: to
-    }, function(r) {
-        console.log(r)
-    })
-}
+        $.getJSON(url, {
+            from: from,
+            to: to
+        }, function (r) {
+            let $list = $('#list_panel');
+
+            for(let i = 0; i < r.length; i++){
+                let data = r[i];
+                let $item = createListItem(data);
+
+                $list.append($item);
+            }
+
+            $('#list_bg').show();
+        })
+    }
+
+    function createListItem(data) {
+        let $tmpl = $('#list_item_template').clone().removeAttr('id');
+
+        $tmpl.find('.list_item_image').attr('src', data.titleImageUrl);
+        $tmpl.find('.list_item_name').html(data.name);
+        $tmpl.find('.list_item_city_name').html(data.cityName);
+
+        $tmpl.click(function(e) {
+            let url = 'detail.html?id =' + data.id;
+            window.location = url;
+        })
+
+        return $tmpl
+    }
+
 })
