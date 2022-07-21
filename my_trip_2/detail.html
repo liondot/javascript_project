@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세보기 페이지</title>
+    <!-- jquery -->
+    <script src="scripts/jquery 3.6.0.min.js"></script>
+    <script src="libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="scripts/detail.js"></script>
+
+    <!-- style -->
+    <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div id="container">
+        <div id="header" class="inverted">
+            <div>
+                <a href="index.html"><span></span></a>
+                <div class="menu_items right">
+                    <a href="mytrip.html">마이트립</a>
+                    <img src="image/line_maintop_gray.png" alt="">
+                    <a href="resister.html">회원가입</a>
+                </div>
+            </div>
+        </div>
+        <div id="body" class="detail">
+            <div class="detail_container">
+                <div class="detail_header">
+                    <img src="image/icon_list_location.png" alt="">
+                    <div class="detail_header_name"> | <span class="detail_header_city_name"></span></div>
+                    <button class="btn_register">여행지 등록하기</button>
+                </div>
+                <div id="detail_images"></div>
+                <div class="detail_desc">
+                    <div class="detail_title">장소 소개</div>
+                    <div class="detail_desc_text"></div>
+                </div>
+                <div class="detail_map">
+                    <div class="detail_title">지도</div>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
